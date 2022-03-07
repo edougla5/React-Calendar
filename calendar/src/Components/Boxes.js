@@ -1,238 +1,83 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import Modal from "./Modal";
-import Nav from './Nav'
+import ModalClose from "./ModalClose";
+import Nav from "./Nav";
 let x = 0;
 
 const Boxes = (props) => {
   let [modalOpen, setModal] = useState(false);
-  let [month, setMonth] = useState([true, true, true]);
+  let [modalClose, closeModal] = useState(false);
+  let [toggleModal, setToggle] = useState(null)
+  let [month, setMonth] = useState(null)
+  let [daySelected, setDay] = useState(null)
+  let [boxColor, setBoxColor] = useState('black')
+
+  let boxClick = x => {
+    setToggle(1)
+    setDay(x)
+  }
+
   let extraDays = [];
+  
+  let monthDays = [];
+  let daysLabel = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
+  
+  for (let z = 1; z < props.value + 1; z++) {
+    monthDays.push(z);
+  }
+  
+  let tempDay = new Date(props.year, props.month, 1);
 
-  console.log(extraDays[0]);
-  console.log(document.getElementById("removeEvent"));
+  console.log(props.year);
+  console.log(props.month);
+  console.log(tempDay);
 
-  let tempDay = new Date();
-  tempDay.setDate(1);
   for (let x = 0; x < tempDay.getDay(); x++) {
     extraDays.push("0");
   }
 
   let today = new Date();
-  console.log(new Date(today.getFullYear(), today.getMonth()+1, 0).getDate())
+  let daysInMonth = new Date(
+    today.getFullYear(),
+    today.getMonth() + 1,
+    0
+  ).getDate();
+
+  console.log(props.boxColor)
 
   return (
     <div id="dayDisplay">
-      <div>{modalOpen ? <Modal /> : null}</div>
+      <div>
+        {toggleModal == 1? (
+          <Modal setToggle={setToggle} setDay={setDay} date={props.monthLabel} day={daySelected} year={tempDay.getFullYear()}/>
+        ) : null}
+      </div>
+      <div>{toggleModal == 2 ? <ModalClose /> : null}</div>
       <div className="daysContainer">
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">sun</li>
-          </ul>
-        </div>
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">mon</li>
-          </ul>
-        </div>
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">tues</li>
-          </ul>
-        </div>
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">wed</li>
-          </ul>
-        </div>
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">thurs</li>
-          </ul>
-        </div>
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">fri</li>
-          </ul>
-        </div>
-        <div id="dayLabel">
-          <ul>
-            <li id="dayText">sat</li>
-          </ul>
-        </div>
+        {daysLabel.map((r) => (
+          <div id="dayLabel">
+            <ul>
+              <li id="dayText">{r}</li>
+            </ul>
+          </div>
+        ))}
       </div>
       <div className="boxes">
         {extraDays.map((e) => (
-          <div className="blankBox" onClick={() => setModal(true)}>
+          <div className="blankBox">
             <ul>
               <li>{e}</li>
             </ul>
           </div>
         ))}
-        <div className="box" onClick={() => setModal(true)}>
-          <ul>
-            <li>1</li>
-          </ul>
-        </div>
-        <div className="box" onclick={() => setModal(true)}>
-          <ul>
-            <li>2</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(3)">
-          <ul>
-            <li>3</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal()">
-          <ul>
-            <li>4</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(5)">
-          <ul>
-            <li>5</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(6)">
-          <ul>
-            <li>6</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(7)">
-          <ul>
-            <li>7</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(8)">
-          <ul>
-            <li>8</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(9)">
-          <ul>
-            <li>9</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(10)">
-          <ul>
-            <li>10</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(11)">
-          <ul>
-            <li>11</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(12)">
-          <ul>
-            <li>12</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(13)">
-          <ul>
-            <li>13</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(14)">
-          <ul>
-            <li>14</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(15)">
-          <ul>
-            <li>15</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(16)">
-          <ul>
-            <li>16</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(17)">
-          <ul>
-            <li>17</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(18)">
-          <ul>
-            <li>18</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(19)">
-          <ul>
-            <li>19</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(20)">
-          <ul>
-            <li>20</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(21)">
-          <ul>
-            <li>21</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(22)">
-          <ul>
-            <li>22</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(23)">
-          <ul>
-            <li>23</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(24)">
-          <ul>
-            <li>24</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(25)">
-          <ul>
-            <li>25</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(26)">
-          <ul>
-            <li>26</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(27)">
-          <ul>
-            <li>27</li>
-          </ul>
-        </div>
-        <div className="box" onclick="openModal(28)">
-          <ul>
-            <li>28</li>
-          </ul>
-        </div>
-        <div id="box29" onclick="openModal(29)">
-          {" "}
-          {month[0] ? (
+        {monthDays.map((g) => (
+          <div className="box" style={{color: props.color, backgroundColor: props.boxColor, borderColor: props.borderColor}} onClick = {() => boxClick(g)}>
             <ul>
-              <li>29</li>
+              <li>{g}</li>
             </ul>
-          ) : null}
-        </div>
-        <div id="box30" onclick="openModal(30)">
-          {" "}
-          {month[1] ? (
-            <ul>
-              <li>30</li>
-            </ul>
-          ) : null}
-        </div>
-        <div id="box31" onclick="openModal(31)">
-          {" "}
-          {month[2] ? (
-            <ul>
-              <li>31</li>
-            </ul>
-          ) : null}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

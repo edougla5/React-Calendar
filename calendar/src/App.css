@@ -6,14 +6,10 @@
 }
 
 body {
+  background-color: black;
   color: black;
 }
 
-.arrowsContainer {
-  position: absolute;
-  top: 25px;
-  margin-left: 50%;
-}
 
 #dayLabel {
   border-radius: 10px;
@@ -23,6 +19,7 @@ body {
   height: 70px;
   border: solid transparent;
   border-width: thin;
+  color: white;
 }
 
 #dayText {
@@ -50,6 +47,7 @@ body {
 }
 
 .month {
+  color: white;
   user-select: none;
   position: absolute;
   margin-left: 10%;
@@ -59,6 +57,7 @@ body {
 }
 
 .year {
+  color: white;
   user-select: none;
   display: block;
   position: absolute;
@@ -68,14 +67,23 @@ body {
   font-family: Langar, sans-serif;
 }
 
+/* arrows styling */
+
+.arrowsContainer {
+  position: absolute;
+  top: 25px;
+  margin-left: 35%;
+}
+
 .forwardArrow {
   margin-left: 10px;
   user-select: none;
   position: relative;
   display: inline;
-  border: solid black;
-  border-radius: 20%;
+  width: 6em;
   cursor: pointer;
+  background-color: white;
+  filter: invert(1);
 }
 
 .forwardArrow:active {
@@ -89,9 +97,12 @@ body {
   transform: rotate(180deg);
   display: inline;
   position: relative;
-  border: solid black;
+  width: 6em;
+  margin-right: 10px;
   border-radius: 20%;
   cursor: pointer;
+  background-color: white;
+  filter: invert(1);
 }
 
 #backwardArrow:active {
@@ -101,17 +112,16 @@ body {
 }
 
 .blankBox {
+  user-select: none;
   border-radius: 10px;
   display: inline-grid;
   margin: 4px;
   transition: 0.2s ease-in-out;
   width: 70px;
   height: 70px;
-  background-color: white;
-  border: solid white;
+  border: solid black;
   border-width: thin;
-  color: white;
-  cursor: pointer;
+  color: black;
 }
 
 .blankBox ul {
@@ -218,16 +228,15 @@ body {
   cursor: pointer;
 }
 
-#eventsBox {
+.eventsBox {
   /* position: absolute; */
   right: 40px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   transition: width 0.5s ease-in-out;
   width: 100%;
   height: 100%;
   bottom: 30px;
-  border: solid white;
   border-width: thin;
   box-shadow: 10px 5px 5px #333;
 }
@@ -242,7 +251,7 @@ body {
   margin: 0 auto;
 }
 
-#title {
+.title {
   margin: 6px 0 0 10px;
   font-style: italic;
   color: white;
@@ -296,15 +305,15 @@ body {
   float: left;
 }
 
-#noEvents {
-  display: none;
+.noEvents {
+  /* display: none; */
   text-align: center;
   margin-top: 50px;
   font-style: italic;
 }
 
 
-#event1 {
+.event {
   text-align: center;
 }
 
@@ -383,21 +392,22 @@ a:focus {
   color: #4034b0;
 }
 
-#backwardDay {
+.backwardDay {
   cursor: pointer;
   position: absolute;
   left: -100px;
   top: 40%;
   height: 100px;
-  transform: rotate(180deg)
+  transform: rotate(180deg);
 }
 
-#forwardDay {
+.forwardDay {
   cursor: pointer;
   position: absolute;
   right: -100px;
   top: 40%;
   height: 100px;
+  background-color: black;
 }
 
 .modal {
@@ -423,15 +433,15 @@ a:focus {
 
 .modal2 {
   z-index: 10;
-  display: none;
+  /* display: none; */
   position: fixed;
   padding-top: 50px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: closeUpModal .5s ease-in-out;
+  background-color: white;
+  animation: closeUpModal .5s forwards;
 }
 
 .modal2-content {
@@ -440,14 +450,13 @@ a:focus {
   margin: auto;
   width: 75%;
   height: 75%;
-  /* animation: closeUpModal .5s ease-in-out; */
 }
 
 .close-btn {
   cursor: pointer;
   float: right;
   margin-right: 10px;
-  color: lightgray;
+  color: red;
   font-size: 24px;
   font-weight: bold;
 }
