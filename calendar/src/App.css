@@ -98,6 +98,7 @@ body {
   display: inline;
   position: relative;
   width: 6em;
+  user-select: none;
   margin-right: 10px;
   border-radius: 20%;
   cursor: pointer;
