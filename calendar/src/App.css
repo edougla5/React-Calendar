@@ -429,7 +429,7 @@ a:focus {
   margin-top: 20px;
   width: 75%;
   height: 75%;
-  animation: blowUpModal .5s ease-in-out;
+  animation: blowUpModal .2s ease-in-out;
 }
 
 .modal2 {

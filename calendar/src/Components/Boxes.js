@@ -27,11 +27,7 @@ const Boxes = (props) => {
     monthDays.push(z);
   }
   
-  let tempDay = new Date(props.year, props.month, 1);
-
-  console.log(props.year);
-  console.log(props.month);
-  console.log(tempDay);
+  let tempDay = new Date(props.year, props.month, 1)
 
   for (let x = 0; x < tempDay.getDay(); x++) {
     extraDays.push("0");
@@ -48,7 +44,7 @@ const Boxes = (props) => {
     <div id="dayDisplay">
       <div>
         {toggleModal == 1? (
-          <Modal setToggle={setToggle} setDay={setDay} date={props.monthLabel} day={daySelected} year={tempDay.getFullYear()}/>
+          <Modal setToggle={setToggle} setDay={setDay} month={props.month} date={props.monthLabel} day={daySelected} year={tempDay.getFullYear()}/>
         ) : null}
       </div>
       <div>{toggleModal == 2 ? <ModalClose /> : null}</div>
