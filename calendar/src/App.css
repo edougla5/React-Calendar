@@ -296,14 +296,15 @@ body {
     box-shadow: 5px 5px;
 } */
 
-#removeEvent {
+.removeEvent {
   border: none;
   border-radius: 20px;
+  border-width: thin;
   cursor: pointer;
   width: 100px;
-  left: 13px;
-  bottom: 145px;
-  float: left;
+  position: absolute;
+  right: 10%;
+  bottom: 5%;
 }
 
 .noEvents {

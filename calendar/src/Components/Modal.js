@@ -11,52 +11,90 @@ function checkDate(a) {
   return abrv;
 }
 
-let events = [];
+
 
 const Modal = (props) => {
   let [day, setDay] = useState(props.day);
   let [count, setCount] = useState(null)
-  let [formData, setFormData] = useState("");
-  const [data, setdata] = useState("");
+  let [formData, setFormData] = useState("")
+  const [data, setdata] = useState("")
   let [month, setMonth] = useState(props.date);
-  let [text, setText] = useState(false);
-
-  document.addEventListener("keydown", log);
-
-
+  // let [text, setText] = useState(false)
+  
+  let event1, event2, event3
+  document.addEventListener("keydown", log)
+  let textDisplay = false
+  
   // events stored multi dimensional array
-
+  
   function log(e) {
     if (e.keyCode == 27) {
-      props.setToggle(2);
+      props.setToggle(2)
     }
   }
 
+  let tempEvents = []
+  // populate temp array with state array in boxes
+  for(let x=0;x<props.logged.length;x++) {
+    tempEvents.push(props.logged[x])
+  }
+  
+  // pushes event objects & sets events state w/ updated array
   const handleSubmit = (e) => {
-    e.preventDefault();
-    events.push({
+    e.preventDefault()
+    tempEvents.push({
       year: props.year,
       month: props.month,
-      day: props.day,
-      event1: formData,
-    });
-    setdata(events[0].event1);
-  };
+      day: day,
+      text: formData
+    })
+    props.setEvents(tempEvents)
+    textDisplay = true
+  }
+  
+  let eventsArray = props.logged.filter(e => e.year == props.year && e.month == props.month && e.day == day)
+  console.log(eventsArray)
 
-  let dayForward = () => {
-    setDay(day + 1);
-  };
-
-  let dayBack = () => {
-    setDay(day - 1);
+  if(textDisplay) {
+    console.log(eventsArray[0].text)
   }
 
-    for(let q=0;q<events.length;q++) {
-      events[q].day == props.day ?
-        console.log(events[q].day) :
-        setText(true)
-        setCount(q)
+  console.log(props.logged.length)
+
+  let removeEvent = () => {
+    for(let z=props.logged.length-1;z>=0;z--) {
+      if(props.logged[z].year == props.year && props.logged[z].month == props.month && props.logged[z].day == day) {
+        props.logged.splice(z,1)
+        break
+      }
     }
+  }
+
+  console.log(props.logged)
+
+  // console.log(props.loggedEvents.length)
+  let dayForward = () => {
+    eventsArray = props.logged.filter(e => e.year == props.year && e.month == props.month && e.day == day)
+    setDay(day + 1)
+  }
+
+  let dayBack = () => {
+    eventsArray = props.logged.filter(e => e.year == props.year && e.month == props.month && e.day == day)
+    setDay(day - 1)
+  }
+
+  if(eventsArray[0]) {
+    textDisplay = true
+    event1 = eventsArray[0].text
+  }
+
+  if(eventsArray[1]) {
+    event2 = eventsArray[1].text
+  }
+
+  if(eventsArray[2]) {
+    event3 = eventsArray[2].text
+  }
 
   return (
     <div className="modal">
@@ -72,18 +110,18 @@ const Modal = (props) => {
                 value={formData}
               />
               <button type="submit">add event</button>
-              <button type="submit">remove event</button>
             </form>
           </div>
+              <button className = 'removeEvent' onClick={removeEvent}>remove event</button>
           <div className="currentDate">
             {month + " " + day + checkDate(day) + " " + props.year}
           </div>
           <h3 className="title"></h3>
-          {text ? (
+          {textDisplay ? (
             <div>
-              <h3 className="event">{events[count].event1}</h3>
-              <h3 className="event">{events[count].events2}</h3>
-              <h3 className="event">{events[count].event3}</h3>
+              <h3 className="event">{event1}</h3>
+              <h3 className="event">{event2}</h3>
+              <h3 className="event">{event3}</h3>
             </div>
           ) : (
             <h3 className="noEvents">{'no events set for today'}</h3>
@@ -93,7 +131,7 @@ const Modal = (props) => {
         <img src={Arrow} className="backwardDay" onClick={dayBack} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Modal;

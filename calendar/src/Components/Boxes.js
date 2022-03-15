@@ -12,6 +12,7 @@ const Boxes = (props) => {
   let [month, setMonth] = useState(null)
   let [daySelected, setDay] = useState(null)
   let [boxColor, setBoxColor] = useState('black')
+  let [events, setEvents] = useState([])
 
   let boxClick = x => {
     setToggle(1)
@@ -24,7 +25,7 @@ const Boxes = (props) => {
   let daysLabel = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
   
   for (let z = 1; z < props.value + 1; z++) {
-    monthDays.push(z);
+    monthDays.push(z)
   }
   
   let tempDay = new Date(props.year, props.month, 1)
@@ -32,6 +33,7 @@ const Boxes = (props) => {
   for (let x = 0; x < tempDay.getDay(); x++) {
     extraDays.push("0");
   }
+  
   let x = 0
   let today = new Date();
   let daysInMonth = new Date(
@@ -44,7 +46,7 @@ const Boxes = (props) => {
     <div id="dayDisplay">
       <div>
         {toggleModal == 1? (
-          <Modal setToggle={setToggle} setDay={setDay} month={props.month} date={props.monthLabel} day={daySelected} year={tempDay.getFullYear()}/>
+          <Modal setEvents={setEvents} logged={events} setToggle={setToggle} setDay={setDay} month={props.month} date={props.monthLabel} day={daySelected} year={tempDay.getFullYear()}/>
         ) : null}
       </div>
       <div>{toggleModal == 2 ? <ModalClose /> : null}</div>
@@ -67,7 +69,7 @@ const Boxes = (props) => {
         ))}
         {monthDays.map((g) => (
           g == today.getDate() ?
-          <div className="box" style={{color: props.color, backgroundColor: props.boxColor, borderColor: 'red'}} key={g} onClick = {() => boxClick(g)}>
+          <div className="box" style={{color: props.color, backgroundColor: 'red', borderColor: props.borderColor}} key={g} onClick = {() => boxClick(g)}>
             <ul>
               <li>{g}</li>
             </ul>

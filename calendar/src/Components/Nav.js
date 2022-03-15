@@ -50,13 +50,13 @@ const Nav = (props) => {
       props.setBoxColor('white')
       props.setColor('black')
       props.setBorderColor('black')
-      
+      props.setBackingColor('white')
       return "Jul";
     } else if (x == 7) {
-      props.setBoxColor('black')
+      props.setBoxColor('white')
       props.setColor('black')
-      props.setBorderColor('white')
-      props.setBackingColor('black')
+      props.setBorderColor('black')
+      props.setBackingColor('white')
       return "Aug";
     } else if (x == 8) {
       props.setBoxColor('white')

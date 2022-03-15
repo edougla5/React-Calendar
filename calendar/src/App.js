@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <Nav setDaysNumber={setDaysNumber} setBackingColor={setBackingColor} setBorderColor={setBorderColor} setColor={setColor} setBoxColor={setBoxColor} setMonthLabel={setMonthLabel} setMonth={setMonth} setYear={setYear}/>
-      <Boxes value={daysInMonth} month={month} year={year} backingColor={backingColor}borderColor={borderColor} color={color} boxColor={boxColor}monthLabel={monthLabel}/>
+      <Boxes value={daysInMonth} month={month} year={year} backingColor={backingColor} borderColor={borderColor} color={color} boxColor={boxColor} monthLabel={monthLabel}/>
     </div>
   )
 }
