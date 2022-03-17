@@ -33,7 +33,7 @@ const Boxes = (props) => {
   for (let x = 0; x < tempDay.getDay(); x++) {
     extraDays.push("0");
   }
-  
+
   let x = 0
   let today = new Date();
   let daysInMonth = new Date(
@@ -68,7 +68,7 @@ const Boxes = (props) => {
           </div>
         ))}
         {monthDays.map((g) => (
-          g == today.getDate() ?
+          g == today.getDate() && props.month == today.getMonth() ?
           <div className="box" style={{color: props.color, backgroundColor: 'red', borderColor: props.borderColor}} key={g} onClick = {() => boxClick(g)}>
             <ul>
               <li>{g}</li>
@@ -86,4 +86,4 @@ const Boxes = (props) => {
   );
 };
 
-export default Boxes;
+export default Boxes

@@ -20,13 +20,14 @@ const Nav = (props) => {
     } else if (x == 1) {
       props.setBoxColor('black')
       props.setColor('white')
-      props.setBorderColor('black')
-      props.setBackingColor('white')
+      props.setBorderColor('white')
+      props.setBackingColor('black')
       return "feb";
     } else if (x == 2) {
       props.setBoxColor('white')
       props.setColor('black')
       props.setBorderColor('black')
+      props.setBackingColor('white')
       return "march";
     } else if (x == 3) {
       props.setBoxColor('black')

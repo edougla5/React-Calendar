@@ -10,7 +10,6 @@ body {
   color: black;
 }
 
-
 #dayLabel {
   border-radius: 10px;
   display: inline-grid;
@@ -20,6 +19,11 @@ body {
   border: solid transparent;
   border-width: thin;
   color: white;
+}
+
+.currentDate {
+  padding: 20px;
+
 }
 
 #dayText {
@@ -281,14 +285,15 @@ body {
   bottom: 30px;
 }
 
-#addEvent {
+.addEvent {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  width: 100px;
-  left: 13px;
-  bottom: 145px;
-  float: left;
+  width: 120px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  margin-left: 20px;
 }
 
 /* #addEvent:hover {
@@ -301,10 +306,13 @@ body {
   border-radius: 20px;
   border-width: thin;
   cursor: pointer;
-  width: 100px;
+  width: 120px;
+  height: 30px;
+  background-color: black;
+  color: white;
   position: absolute;
-  right: 10%;
-  bottom: 5%;
+  left: 45%;
+  bottom: 30px;
 }
 
 .noEvents {
@@ -313,7 +321,6 @@ body {
   margin-top: 50px;
   font-style: italic;
 }
-
 
 .event {
   text-align: center;
@@ -414,23 +421,23 @@ a:focus {
 
 .modal {
   z-index: 5;
-  position: fixed; 
+  position: fixed;
   padding-top: 50px;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  position: relative; 
+  position: relative;
   padding: 20px;
   margin: auto;
   margin-top: 20px;
   width: 75%;
   height: 75%;
-  animation: blowUpModal .2s ease-in-out;
+  animation: blowUpModal 0.2s ease-in-out;
 }
 
 .modal2 {
@@ -443,7 +450,7 @@ a:focus {
   width: 100%;
   height: 100%;
   background-color: white;
-  animation: closeUpModal .5s forwards;
+  animation: closeUpModal 0.5s forwards;
 }
 
 .modal2-content {
@@ -457,6 +464,7 @@ a:focus {
 .close-btn {
   cursor: pointer;
   float: right;
+  margin-top: 20px;
   margin-right: 10px;
   color: red;
   font-size: 24px;
@@ -466,29 +474,36 @@ a:focus {
 .close-btn:hover {
   color: darkgray;
 }
+
 @keyframes blowUpModal {
   0% {
-    transform:scale(0)
+    transform: scale(0);
   }
   100% {
-    transform:scale(1)
+    transform: scale(1);
   }
 }
 
 @keyframes closeUpModal {
   0% {
-    transform:scale(1);
-    opacity:1;
+    transform: scale(1);
+    opacity: 1;
   }
   100% {
-    transform:scale(0);
-    opacity:0;
+    transform: scale(0);
+    opacity: 0;
     display: none;
   }
 }
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 @keyframes animatetop {
 }
