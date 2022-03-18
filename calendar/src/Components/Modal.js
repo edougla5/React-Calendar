@@ -15,7 +15,6 @@ const Modal = (props) => {
   let [day, setDay] = useState(props.day);
   let [count, setCount] = useState(null);
   let [formData, setFormData] = useState("");
-  const [data, setdata] = useState("");
   let [month, setMonth] = useState(props.date);
   // let [text, setText] = useState(false)
 
@@ -105,15 +104,16 @@ const Modal = (props) => {
           <div className="eventButtons">
             <form onSubmit={handleSubmit}>
               <input
+              className='textBox'
                 onChange={(e) => setFormData(e.target.value)}
                 value={formData}
               />
               <button className='addEvent' type="submit">add event</button>
             </form>
-          </div>
           <button className="removeEvent" onClick={removeEvent}>
             remove event
           </button>
+          </div>
           <h5 className="currentDate">
             {month + " " + day + checkDate(day) + " " + props.year}
           </h5>
